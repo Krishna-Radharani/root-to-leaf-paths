@@ -1,0 +1,29 @@
+class Solution {
+  public: 
+    void function(Node*root,vector<int>&temp,vector<vector<int>>&ans){
+        if(root==nullptr){
+            return;
+        }
+        temp.push_back(root->data);
+        if(!root->left && !root->right){
+            ans.push_back(temp);
+        }
+        else{
+            if(root->left){
+                function(root->left,temp,ans);
+            }
+            if(root->right){
+                function(root->right,temp,ans);
+            }
+        }
+        temp.pop_back();
+    }
+    vector<vector<int>> Paths(Node* root) {
+        vector<int>temp;
+        vector<vector<int>>ans;
+        function(root,temp,ans);
+        return ans;
+        
+        
+    }
+};
